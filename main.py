@@ -1,14 +1,14 @@
 import sys
 from random import randint
-from PyQt5 import uic
+from UI import Ui_MainWindow
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 
 
-class Window(QMainWindow):
+class Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.btn = QPushButton('Рисовать', self)
         self.btn.setGeometry(180, 560, 231, 61)
@@ -26,7 +26,7 @@ class Window(QMainWindow):
         self.repaint()
 
     def draw_circle(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(1, 255), randint(1, 255), randint(1, 255)))
         qp.drawEllipse(140, 90, randint(1, 450), randint(1, 450))
 
 
